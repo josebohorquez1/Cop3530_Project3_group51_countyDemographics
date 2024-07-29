@@ -61,11 +61,173 @@ function populateCountyDropdown(state) {
         select_county_dropdown.disabled = false;
         select_county_dropdown.addEventListener("change", (event) => {
             const county = event.target.value;
-            displayData(state, county);
+            if (county) {
+                document.getElementById("submit").disabled = false;
+            }
+            else {
+                document.getElementById("submit").disabled = true;
+            }
         });
     }
     else {
         select_county_dropdown.disabled = true;
     }
 }
+function displayData(state, county) {
+    html_str = ""
+    document.getElementById("browse").style.display = "none";
+    const result_div = document.getElementById("result");
+    result_div.style.display = "block";
+    html_str += `<h3>Age Statistics</h3>
+    <ul>
+    `;
+    Object.entries(data_dict[state][county].age).forEach(([key, value]) => {
+        if (value == -1) {
+            html_str += `<li><p>${key}: unavailable</p></li>`;
+        }
+        else {
+        html_str += `<li><p>${key}: ${value}%</p></li>`;
+        }
+    });
+    html_str += `</ul>`;
+    html_str += `<h3>Education Statistics</h3>
+    <ul>
+    `;
+    Object.entries(data_dict[state][county].education).forEach(([key, value]) => {
+        if (value == -1) {
+            html_str += `<li><p>${key}: unavailable</p></li>`;
+        }
+        else {
+        html_str += `<li><p>${key}: ${value}%</p></li>`;
+        }
+    });
+    html_str += `</ul>`;
+    html_str += `<h3>Employment Statistics</h3>
+    <ul>
+    `;
+    Object.entries(data_dict[state][county].employment).forEach(([key, value]) => {
+        if (key == "Firms") {
+            html_str += `</ul>
+            <h4>${key}</h4>
+            <ul>
+            `;
+            Object.entries(value).forEach(([firm, value]) => {
+                if (value == -1) {
+                    html_str += `<li><p>${firm}: unavailable</p></li>`
+                }
+                else {
+                html_str += `<li><p>${firm}: ${value}</p></li>`
+                }
+            });
+            html_str += `</ul>`;
+        }
+        else {
+            if (value == -1) {
+                html_str += `<li><p>${key}: unavailable</p></li>`;
+            }
+            else {
+        html_str += `<li><p>${key}: ${value}</p></li>`;
+            }
+        }
+    });
+    html_str += `</ul>`;
+    html_str += `<h3>Ethnicity Statistics</h3>
+    <ul>
+    `;
+    Object.entries(data_dict[state][county].ethnicities).forEach(([key, value]) => {
+        if (value == -1) {
+            html_str += `<li><p>${key}: unavailable</p></li>`;
+        }
+        else {
+        html_str += `<li><p>${key}: ${value}%</p></li>`;
+        }
+    });
+    html_str += `</ul>`;
+    html_str += `<h3>Housing Statistics</h3>
+    <ul>
+    `;
+    Object.entries(data_dict[state][county].housing).forEach(([key, value]) => {
+        if (value == -1) {
+            html_str += `<li><p>${key}: unavailable</p></li>`;
+        }
+        else {
+            if (key == "Persons per Household") {
+                html_str += `<li><p>${key}: ${value}</p></li>`;
+            }
+            else if (!Number.isInteger(value)) {
+            html_str += `<li><p>${key}: ${value}%</p></li>`;
+        }
+        else if (key == "Median Value of Owner-Occupied Units") {
+            html_str += `<li><p>${key}: $${value}</p></li>`;
+        }
+        else {
+            html_str += `<li><p>${key}: ${value}</p></li>`;
+        }
+    }
+    });
+    html_str += `</ul>`;
+    html_str += `<h3>Income Statistics</h3>
+    <ul>
+    `;
+    Object.entries(data_dict[state][county].income).forEach(([key, value]) => {
+        if (value == -1) {
+            html_str += `<li><p>${key}: unavailable</p></li>`;
+        }
+        else {
+        html_str += `<li><p>${key}: $${value}</p></li>`;
+        }
+    });
+    html_str += `</ul>`;
+    html_str += `<h3>Population Statistics</h3>
+    <ul>
+    `;
+    Object.entries(data_dict[state][county].population).forEach(([key, value]) => {
+        if (value == -1) {
+            html_str += `<li><p>${key}: unavailable</p></li>`;
+        }
+        else {
+        html_str += `<li><p>${key}: ${value}</p></li>`;
+        }
+    });
+    html_str += `</ul>`;
+    html_str += `<h3>Sales Statistics</h3>
+    <ul>
+    `;
+    Object.entries(data_dict[state][county].sales).forEach(([key, value]) => {
+        if (value == -1) {
+            html_str += `<li><p>${key}: unavailable</p></li>`;
+        }
+        else {
+        html_str += `<li><p>${key}: ${value}</p></li>`;
+        }
+    });
+    html_str += `</ul>`;
+    html_str += `<h3>Other Statistics</h3>
+    <ul>
+    `;
+    Object.entries(data_dict[state][county].miscellaneous).forEach(([key, value]) => {
+        if (value == -1) {
+            html_str += `<li><p>${key}: unavailable</p></li>`;
+        }
+        else {
+            if (key == "Mean Travel Time to Work") {
+                html_str += `<li><p>${key}: ${value} minutes</p></li>`;
+            }
+            else if (!Number.isInteger(value) && value <= 100) {
+                html_str += `<li><p>${key}: ${value}%</p></li>`;
+            }
+            else {
+        html_str += `<li><p>${key}: ${value}</p></li>`;
+            }
+    }
+    });
+    html_str += `</ul>`;
+    result_div.innerHTML += html_str;
+}
+function handleSubmit() {
+    const state = document.getElementById("select-state").value;
+    const county = document.getElementById("select-county").value;
+    displayData(state, county);
+}
+document.getElementById("submit").addEventListener("click", handleSubmit);
 fetchCountyData();

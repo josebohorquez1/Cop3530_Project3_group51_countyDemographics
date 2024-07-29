@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Welcome to the County Demographic Viewer</h1>
-        <main>
+        <main id="browse">
             <h2>Select State and County</h2>
             <p>Select the state and county who's demographic information you wish to view.</p>
             <label for="select-state">Select State:</label>
@@ -19,7 +19,11 @@
             <select id="select-county" disabled>
                 <option value="">Select a County</option>
             </select>
+            <button id="submit" disabled>Submit</button>
         </main>
+        <div id="result" role="County Statistics" style="display: none;">
+            <h2>Results</h2>
+        </div>
         <script src="js/hash_table.js"></script>
     </body>
     </html>
