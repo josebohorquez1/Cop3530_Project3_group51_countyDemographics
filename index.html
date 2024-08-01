@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>County Demographic Viewer</title>
         <style>
 
@@ -19,11 +20,21 @@
             <select id="select-county" disabled>
                 <option value="">Select a County</option>
             </select>
+            <label for="select-view">Select the way you wish to view the data.</label>
+            <select id="select-view" disabled>
+                <option value="chart">Chart View</option>
+                <option value="list">List View</option>
+            </select>
+            <button onclick="toggleFilterMenu()" id="filter-menu-button" disabled>Open Filter Menu</button>
+            <section id="filter-menu" aria-label="Filter Menu" style="display: none;">
+            </section>
             <button id="submit" disabled>Submit</button>
         </main>
-        <div id="result" role="County Statistics" style="display: none;">
-            <h2>Results</h2>
-        </div>
+        <section id="result" aria-label="result" aria-live="polite" style="display: none;">
+            <button onclick="newSearchButtonFunction()">New Search</button>
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="js/ordered-map.js"></script>
         <script src="js/hash_table.js"></script>
     </body>
     </html>
