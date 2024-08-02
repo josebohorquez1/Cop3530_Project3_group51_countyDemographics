@@ -52,7 +52,17 @@ function populateStateDropdown() {
     });
     select_state_dropdown.addEventListener("change", (event) => {
         const selected_state = event.target.value;
-        populateCountyDropdown(selected_state);
+        document.getElementById("submit").disabled = true;
+        document.getElementById("filter-menu-button").disabled = true;
+        document.getElementById("select-view").disabled = true;
+        document.getElementById("select-county").disabled = true;
+        if (document.getElementById("filter-menu").style.display == "block") {
+            document.getElementById("filter-menu").style.display = "none";
+        }
+        if (document.getElementById("filter-menu-button").innerHTML == "Close Filter Menu") {
+            document.getElementById("filter-menu-button").innerHTML = "Open Filter Menu";
+        }
+ populateCountyDropdown(selected_state);
     });
 }
 function populateCountyDropdown(state) {
