@@ -4,9 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.2.4/dist/tailwind.min.css" rel="stylesheet">
-        <link href="./src/styles.css" rel="stylesheet">
-        <title>County Demographic Viewer</title>
+        <link href="../src/styles.css" rel="stylesheet">
+        <link href="output.css" rel="stylesheet">        <title>County Demographic Viewer</title>
+        <style>
+            .chart-container {
+                width: 100%;
+                max-width: 100%;
+                height: 600px;
+            }
+        </style>
     </head>
     
     <body class="bg-gray-800 text-white flex flex-col items-center justify-center min-h-screen p-4">
@@ -47,7 +53,7 @@
             <button onclick="toggleFilterMenu()" id="filter-menu-button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 
             to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg 
             shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" disabled>Open Filter Menu</button>
-            <section id="filter-menu" aria-label="Filter Menu" style="display: none;">
+            <section id="filter-menu" aria-label="Filter Menu" style="display: none; max-width: 100%;">
             </section>
             <button id="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br 
             focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg 

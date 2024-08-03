@@ -287,7 +287,7 @@ function displayChart() {
     result_div.style.display = "block";
     result_div.innerHTML += `<h2>Results for ${county}, ${document.getElementById("select-state").value}`;
     const canvas = document.createElement("canvas");
-    result_div.appendChild(canvas);
+    result_div.className = "chart-container";
     const data_object = ord_map.getElementByKey(county);
     const data = {};
     if (!document.getElementById("age").checked) {
@@ -337,7 +337,7 @@ if (!document.getElementById("sales").checked) {
     });
 }
     const chart = new Chart(canvas, {
-        type: 'pie',
+        type: 'bar',
         data: {
             labels: Object.keys(data),
             datasets: [{
@@ -349,10 +349,21 @@ if (!document.getElementById("sales").checked) {
         options: {
             maintainAspectRatio: false,
             responsive: true,
-            //scales {
-            //}
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     });
+    canvas.style.boxSizing="border-box";
+    canvas.style.maxHeight = "800px";
+    canvas.height = "600";
+    canvas.style.width = "100%";
+    result.appendChild(canvas);
 }
 function handleSubmit() {
     const state = document.getElementById("select-state").value;
