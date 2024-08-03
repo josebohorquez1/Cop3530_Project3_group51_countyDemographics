@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+select:disabled {
+    background-color: #2D2D2D;
+    color: #6B7280;
+    cursor: not-allowed;
+}
+
+select:disabled:hover {
+    background-color: #2D2D2D;
+    border-color: #6B7280;
+}
+
+.button-disabled {
+    background-color: #2D2D2D;
+    color: #6B7280;
+    cursor: not-allowed;
+    pointer-events: none;
+    transition: background-color 1s, color 1s;
+}
+
+.button-filter-enabled {
+    background: linear-gradient(to right, #3F83F8, #1C64F2, #1A56DB);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 1s, color 1s;
+}
+
+.button-submit-enabled {
+    background: linear-gradient(to right, #31C48D, #0E9F6E, #057A55);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 1s, color 1s;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}

@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.4.7"
+  },
+  "name": "cop3530_project3_group51_countydemographics",
+  "version": "1.0.0",
+  "description": "This project reads info from a dataset containing demographic information for counties in the United States. The data ican be represented in a list view for quick reading, or in a chart view for a visually pleasing experience. In addition, you are able to filter the data and remove categories that may not be of interest.\r ## How to Set up the Project?\r 1. **Clone the repository:**\r     ```\r     git clone https://github.com/josebohorquez1/Cop3530_Project3_group51_countyDemographics.git\r     ```\r 2. **Open the directory of the newly created local repository:**\r     Navigate to the newly created directory after cloneing.\r 3. **Open the \"chrome security\" folder:**\r     Open the \"Crome Security\" folder in the project directory.\r 4. **Open file corresponding to your operating system:**\r     There are two files. Click the one related to your operating system. These files open chrome without web security in order for the fetching of the JSON to work.\r 5. **Open index.html:**\r Press control+o on windows, or command+o on Mac to open the open file dialogue box, and choose \"index.html\" within the project directory.",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./src/styles.css -o ./dist/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "flowbite": "^2.4.1"
+  }
+}
