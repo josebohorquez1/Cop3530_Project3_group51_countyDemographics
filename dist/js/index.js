@@ -106,8 +106,8 @@ function populateCountyDropdown(state) {
 function displayData(state, county) {
     let html_str = ""
     document.getElementById("browse").style.display = "none";
-    const result_div = document.getElementById("result");
-    result_div.style.display = "block";
+    const result_div = document.getElementById("result-list");
+    result_div.style.display = "flex";
 
     html_str += `<div class="container top-4 p-4 border-2 border-gray-300 rounded-lg shadow-2xl bg-gray-900">`; // Start of the container
 
@@ -147,7 +147,7 @@ if (!document.getElementById("employment").checked) {
     Object.entries(data_dict[state][county].employment).forEach(([key, value]) => {
         if (key == "Firms") {
             html_str += `</ul>
-            <h4>${key}</h4>
+            <h4 class="font-bold">${key}:</h4>
             <ul style="margin-bottom: 20px;">
             `;
             Object.entries(value).forEach(([firm, value]) => {
@@ -284,8 +284,8 @@ function displayChart() {
     document.getElementById("browse").style.display = "none";
     const county = document.getElementById("select-county").value;
     const result_div = document.getElementById("result");
-    result_div.style.display = "block";
-    result_div.innerHTML += `<h2>Results for ${county}, ${document.getElementById("select-state").value}`;
+    result_div.style.display = "flex";
+    result_div.innerHTML += `<h2 class="text-2xl font-bold mb-2">Results for ${county}, ${document.getElementById("select-state").value}:`;
     const canvas = document.createElement("canvas");
     result_div.className = "chart-container";
     const data_object = ord_map.getElementByKey(county);
@@ -382,7 +382,7 @@ function populateFilterMenu() {
     const filter_menu = document.getElementById("filter-menu");
     filter_menu.innerHTML = `
         <h3 class="text-lg font-bold dark:text-white">Filter Menu:</h3>
-        <p class="block text-sm mb-2">Check the box or boxes of the categories you do not wish to see in the results</p>
+        <p class="block text-sm mb-2">Check the box or boxes of the categories you do not wish to see in the results.</p>
     `;
     
     const state = document.getElementById("select-state").value;
@@ -427,6 +427,7 @@ function toggleFilterMenu() {
 }
 function newSearchButtonFunction() {
     const result = document.getElementById("result");
+    const resultList = document.getElementById("result-list");
     const state = document.getElementById("select-state");
     const county = document.getElementById("select-county");
     const filter_menu_button = document.getElementById("filter-menu-button")
@@ -437,7 +438,12 @@ function newSearchButtonFunction() {
     result.innerHTML = `<button onclick="newSearchButtonFunction()" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 
     to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 
     shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm 
-    px-8 py-3 w-full max-w-xs text-center me-2 mb-2">New Search</button>`;
+    px-8 py-3 w-full max-w-xs text-center me-2 mb-6">New Search</button>`;
+    resultList.style.display = "none";
+    resultList.innerHTML = `<button onclick="newSearchButtonFunction()" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 
+    to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 
+    shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm 
+    px-8 py-3 w-full max-w-xs text-center me-2 mb-6">New Search</button>`;
     state.value = "";
     county.disabled = true;
     county.innerHTML = `<option value="">Select a County</option>`;
@@ -448,6 +454,7 @@ function newSearchButtonFunction() {
     select_view.disabled = true;
     submit.disabled = true;
     document.getElementById("browse").style.display = "block";
+    disableButtons();
 }
 document.getElementById("submit").addEventListener("click", handleSubmit);
 fetchCountyData();
