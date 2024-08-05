@@ -13,4 +13,4 @@
 4. **Open file corresponding to your operating system:**
     There are two files. Click the one related to your operating system. These files open chrome without web security in order for the fetching of the JSON to work.
 5. **Open index.html:**
-Press control+o on windows, or command+o on Mac to open the open file dialogue box, and choose "index.html" within the project directory.
+Press control+o on windows, or command+o on Mac to open the open file dialogue box, and choose "index.html" within the project directory, under the dist folder.
